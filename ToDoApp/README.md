@@ -1,5 +1,5 @@
 # Angular ToDo List
-------
+=========
 The purpose of this assignment is to create a simple AngularJS web app with a single view.
 
 The single view has three parts: a header; a text input with button; and a list.
