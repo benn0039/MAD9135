@@ -1,11 +1,21 @@
-var ToDoApp = angular.module('ToDoApp', []);
+var listControllers = angular.module('listControllers', []);
 
-ToDoApp.controller('ToDoCtrl', function ($scope) {
-    $scope.tasks = [
-          {item: "Give Justin an A", done: false, priority: true},
-          {item: "Feed the cat", done: false, priority: false},
-          {item: "Cut the lawn", done: false, priority: false}
-    ];
+listControllers.controller('PersonalController', ['$scope', function ($scope) {
+    $scope.tasks = [];
+    
+    // Save list to local machine
+    $scope.saveLocal = function(array){
+        storageString = JSON.stringify($scope.tasks);
+        localStorage.setItem("personalList", storageString);
+    };
+    
+    // Retrieve locally stored data
+    $scope.getLocal = function() {
+        data = localStorage.getItem('personalList');
+        //console.info("Personal List is here");
+        storageData = JSON.parse(data);
+        $scope.tasks = storageData;
+    };
     
     $scope.setfocus = function() {
         document.getElementById('inputToDo').focus();
@@ -13,12 +23,19 @@ ToDoApp.controller('ToDoCtrl', function ($scope) {
     
     $scope.submit = function() {
         $scope.tasks.push({item: $scope.taskDescrip, done: false});
+        console.info("Added Item" + $scope.tasks);
+        $scope.saveLocal();
         $scope.taskDescrip = '';
         $scope.setfocus();
     };
     
     $scope.delete = function(idx) {
-        $scope.tasks.splice(idx, 1);
+        $scope.tasks.splice($scope.tasks.indexOf(idx), 1);
+        //$scope.delete(idx);
+        //$scope.saveLocal();
+        //$scope.done = false;
         $scope.setfocus();
     };
-});
+    
+    $scope.getLocal();
+}]);

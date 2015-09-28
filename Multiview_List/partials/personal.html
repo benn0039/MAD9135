@@ -1,0 +1,21 @@
+<h3>Personal Tasks</h3>
+
+
+    <div class='form-group'>
+        <form class='form-inline' name="addItem" ng-submit="addItem.$valid && submit()" novalidate>
+        <input class='form-control' id="inputToDo" type="text" ng-model="taskDescrip" placeholder="New To Do ..." autofocus required>
+        <button class='btn btn-default' id="addToDo" type="submit">Add</button>
+        </form>
+    </div>
+
+    <!-- tab output -->
+    <ul>
+        <div class='row' ng-repeat="task in tasks track by $index">
+            <input class='col-md-1' type="checkbox" ng-model="done" ng-click="setfocus()">
+            <li class='col-md-10'>
+            {{task.item}}
+            </li>
+            <img src="img/trash-2x.png" ng-hide="!done" ng-click="delete(task)" />
+        </div>
+    </ul>
+
