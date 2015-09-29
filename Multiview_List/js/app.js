@@ -6,16 +6,13 @@ var myApp = angular.module('myApp', [
 myApp.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider.
     when('/personal', {
-		templateUrl: 'partials/personal.html',
-		controller: 'PersonalController'
+		templateUrl: 'partials/personal.html'
 	}).
     when('/work', {
 		templateUrl: 'partials/work.html'
-		//controller: 'ToDoController'
 	}).
     when('/school', {
 		templateUrl: 'partials/school.html'
-		//controller: 'ToDoController'
 	}).
 	otherwise({
 		redirectTo: '/personal'

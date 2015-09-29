@@ -1,41 +1,55 @@
 var listControllers = angular.module('listControllers', []);
 
-listControllers.controller('PersonalController', ['$scope', function ($scope) {
-    $scope.tasks = [];
+listControllers.controller('ToDoController', ['$scope', function ($scope) {
+//    $scope.tasks = [
+//          {item: "Give Justin an A", done: false, category: 'personal'},
+//          {item: "Feed the cat", done: false, category: 'work'},
+//          {item: "Cut the lawn", done: false, category: 'school'},
+//          {item: "Haircut", done: false, category: 'personal'},
+//          {item: "Clip toenails", done: false, category: 'work'},
+//          {item: "wass the car", done: false, category: 'school'}
+//    ];
+//    
     
-    // Save list to local machine
-    $scope.saveLocal = function(array){
-        storageString = JSON.stringify($scope.tasks);
-        localStorage.setItem("personalList", storageString);
-    };
-    
-    // Retrieve locally stored data
-    $scope.getLocal = function() {
-        data = localStorage.getItem('personalList');
-        //console.info("Personal List is here");
-        storageData = JSON.parse(data);
-        $scope.tasks = storageData;
-    };
+    $scope.category = 'personal';
     
     $scope.setfocus = function() {
         document.getElementById('inputToDo').focus();
     };
-    
-    $scope.submit = function() {
-        $scope.tasks.push({item: $scope.taskDescrip, done: false});
-        console.info("Added Item" + $scope.tasks);
-        $scope.saveLocal();
+
+    $scope.submit = function(task) {
+        $scope.tasks.push({item: $scope.taskDescrip, done: false, category: $scope.category});
+        $scope.saveToLocal($scope.tasks);
+        $scope.tasks = $scope.getFromLocal();
         $scope.taskDescrip = '';
         $scope.setfocus();
     };
-    
-    $scope.delete = function(idx) {
-        $scope.tasks.splice($scope.tasks.indexOf(idx), 1);
-        //$scope.delete(idx);
-        //$scope.saveLocal();
-        //$scope.done = false;
+
+    $scope.delete = function(tsk) {
+        $scope.tasks.splice($scope.tasks.indexOf(tsk), 1);
+        $scope.saveToLocal($scope.tasks);
+        $scope.tasks = $scope.getFromLocal();
         $scope.setfocus();
     };
+
+    $scope.setCategory = function(cat) {
+        //console.log(cat);
+        $scope.category = cat;
+        $scope.setfocus();
+    };
+
+    $scope.getCategory = function () {
+        return $scope.category;
+    };
     
-    $scope.getLocal();
+    $scope.saveToLocal = function(arry) {
+        storageString = JSON.stringify(arry);
+        localStorage.setItem('list', storageString);
+    };
+    
+    $scope.getFromLocal = function() {
+        return JSON.parse(localStorage.getItem('list'));
+    };
+        
+    $scope.tasks = $scope.getFromLocal();
 }]);

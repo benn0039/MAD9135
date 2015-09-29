@@ -6,27 +6,38 @@
         <meta name="author" content="benn0039">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link type="text/css" rel="stylesheet" href="css/main.css">
-        <link type="text/css" rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+        
+<!--        <link type="text/css" rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">-->
 <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
-<!--        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>-->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+        <link type="text/css" rel="stylesheet" href="css/style.css">
         
         <script src="lib/angular/angular-min.js"> </script>
         <title>ANGULAR TODO LIST</title>
     </head>
-    
-    <body class='container'>
-        <nav class='row'>
-            <ul class='nav nav-tabs nav-justified'>
-                <li role='presentation'><a href="#/personal">Personal</a></li>
-                <li class='col-md-4' role='presentation'><a href="#/work">Work</a></li>
-                <li class='col-md-4' role='presentation'><a href="#/school">School</a></li>
-            </ul>
-        </nav>
+    <body ng-controller="ToDoController as todoCtrl">
+        <div class='wrapper' >
             
-        <!-- tab output -->
-        <div ng-view></div>
-        
+            <!-- static section -->
+            <div class='static'>
+                <h1>To Do List</h1>
+                <form name="addItem" ng-submit="addItem.$valid && submit(task)" novalidate>
+                    <input id="inputToDo" type="text" ng-model="taskDescrip" placeholder="New To Do ..." autofocus required>
+                    <button id="addToDo" type="submit">Add</button>
+                </form>
+            </div>
+            
+            <nav>
+                <ul class="tab_container"  >
+                    <li class='tab'><a href="#/personal" ng-click="setCategory('personal')">Personal Tasks</a></li>
+                    <li class='tab'><a href="#/work" ng-click="setCategory('work')">Work Tasks</a></li>
+                    <li class='tab'><a href="#/school" ng-click="setCategory('school')">School Tasks</a></li>
+                </ul>
+            </nav>
+            
+            <!-- tab output -->
+            <div class='list' ng-view></div>
+        </div>
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"> </script>-->
         <script src="lib/angular/angular-route-min.js"> </script>
         <script src="js/app.js"> </script>

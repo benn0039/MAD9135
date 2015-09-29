@@ -1,6 +1,0 @@
-TO DO LIST
-
-[] Change divs to sections
-[] Save to local storage
-[] Use Bootstrap
-[] Remove setCategory Call on Nav ???

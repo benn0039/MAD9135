@@ -5,6 +5,6 @@
         <li class='list_item' ng-class="{'high-priority': task.priority, complete: done}">
             {{task.item}}
         </li>
-       <img src="img/trash-2x.png" class="del_btn" ng-hide="!done" ng-click="delete($index)" />
+       <img src="img/trash-2x.png" class="del_btn" ng-hide="!done" ng-click="delete(task)" />
     </div>
 </ul>
