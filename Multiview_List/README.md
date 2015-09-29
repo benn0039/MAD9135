@@ -15,4 +15,4 @@ When the app starts, and when changing views it should check local storage and s
 
 ## Notes
 
-Originally decided that I would use one data model and filter the model on the active view instead of a distinct model for each view but as I got deeper into the assignment I realized it may make more sense to use a single view and filter the array based on the active category. 
+I decided that I would use one model and filter the model based on the active cateogry. 
