@@ -1,7 +1,0 @@
-TO DO LIST
-
-[] Change divs to sections
-[] Save to local storage
-[] Use Bootstrap
-[] Fix use of literal filter on list item on templates
-[] Delete doesnt work
